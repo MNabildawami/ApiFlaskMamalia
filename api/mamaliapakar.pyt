@@ -49,6 +49,13 @@ def forward_chaining(input_facts):
 # Endpoint untuk mencari mamalia berdasarkan fakta
 @app.route('/cari-mamalia', methods=['POST'])
 def cari_mamalia():
+    # Validasi method
+    if request.method != 'POST':
+        return jsonify({
+            "error": "Method Not Allowed",
+            "message": "Silakan gunakan Postman atau aplikasi lain untuk mengakses endpoint ini dengan method POST."
+        }), 405
+
     input_facts = request.json
 
     # Validasi input
@@ -89,6 +96,6 @@ def index():
         }
     })
 
-# Fungsi untuk menjalankan aplikasi Flask di Vercel
-def handler(request):
-    return app(request)
+if __name__ == '__main__':
+    app.run(debug=False)  # Jangan gunakan debug mode di Heroku
+
