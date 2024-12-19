@@ -97,5 +97,4 @@ def index():
     })
 
 if __name__ == '__main__':
-    app.run(debug=False)  # Jangan gunakan debug mode di Heroku
-
+    app.run(debug=True)
